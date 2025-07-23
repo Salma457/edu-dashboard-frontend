@@ -2,7 +2,7 @@
 import React, { ComponentType } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { RootState } from "../store";
+import { RootState } from "../app/store";
 
 const requireAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
   const ComponentWithAuth = (props: P) => {

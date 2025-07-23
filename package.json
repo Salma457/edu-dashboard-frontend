@@ -17,6 +17,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "axios": "^1.11.0",
+    "framer-motion": "^12.23.7",
     "i18next": "^21.6.16",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
