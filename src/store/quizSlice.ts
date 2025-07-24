@@ -1,18 +1,24 @@
 // src/store/quizSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { fetchQuizzes, Quiz } from "../services/quizAPI";
+
+interface QuizState {
+  items: Quiz[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+}
+
+const initialState: QuizState = {
+  items: [],
+  status: "idle",
+};
 
 export const getQuizzes = createAsyncThunk("quizzes/fetchAll", async () => {
-  const res = await axios.get("http://localhost:5000/api/quizzes");
-  return res.data;
+  return await fetchQuizzes();
 });
 
 const quizSlice = createSlice({
   name: "quizzes",
-  initialState: {
-    items: [],
-    status: "idle",
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder

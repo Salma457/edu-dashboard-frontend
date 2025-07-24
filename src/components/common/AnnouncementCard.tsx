@@ -1,43 +1,78 @@
-// src/components/AnnouncementCard.tsx
 import React from "react";
-import { Card, CardHeader, CardContent, Avatar, Typography, Chip } from "@mui/material";
+import { Box, Typography, Avatar} from "@mui/material";
 
 type Announcement = {
   _id: string;
-  title: string;
+  // title: string;
   content: string;
   type: string;
   subject: string;
   authorName: string;
   authorAvatar: string;
-  createdAt: string;
+  // createdAt: string;
 };
 
 const AnnouncementCard = ({ announcement }: { announcement: Announcement }) => {
   return (
-    <Card sx={{ maxWidth: 600, margin: "1rem auto", boxShadow: 3 }}>
-      <CardHeader
-        avatar={
-          <Avatar src={announcement.authorAvatar}>
-            {announcement.authorName?.charAt(0)}
-          </Avatar>
-        }
-        title={announcement.authorName}
-        subheader={new Date(announcement.createdAt).toLocaleString()}
+    <Box sx={{
+      width: '100%',
+      mb: 3,
+      p: 3,
+      backgroundColor: '#ffffff',
+      borderRadius: '12px',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+      display: 'flex',
+      alignItems: 'flex-start'
+    }}>
+      <Avatar 
+        src={announcement.authorAvatar}
+        sx={{ 
+          width: 64, 
+          height: 64,
+          mr: 3,
+          border: "2px solid #0096c7"
+        }}
       />
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
-          {announcement.title}
+
+      <Box sx={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        mr: 3
+      }}>
+        <Typography variant="subtitle1" fontWeight="bold">
+          {announcement.authorName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
+          {announcement.subject}
+        </Typography>
+      </Box>
+
+      <Box flex={1}>
+        {/* <Typography variant="caption" color="text.secondary" display="block" mb={1}>
+          {new Date(announcement.createdAt).toLocaleDateString()} • 
+          {new Date(announcement.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+        </Typography> */}
+        
+        {/* {announcement.title && (
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            {announcement.title}
+          </Typography>
+        )} */}
+        
+        <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
           {announcement.content}
         </Typography>
-        <div style={{ marginTop: "0.5rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-          <Chip label={announcement.type} color="primary" size="small" />
-          <Chip label={announcement.subject} color="secondary" size="small" />
-        </div>
-      </CardContent>
-    </Card>
+        
+        {/* <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+          <Chip 
+            label={announcement.type} 
+            color="primary" 
+            size="small"
+            sx={{ fontWeight: 600 }}
+          />
+        </Stack> */}
+      </Box>
+    </Box>
   );
 };
 
