@@ -7,17 +7,23 @@ import {
   Card,
   CardContent
 } from "@mui/material";
+import {
+  cardStyles,
+  cardContentStyles,
+  headerStyles,
+  titleStyles,
+  dueItemStyles,
+  dividerStyles,
+  quizButtonStyles,
+  assignmentButtonStyles
+} from "../styles/common/WhatsDueCard.styles";
 
 const WhatsDueCard = () => {
   return (
-    <Card sx={{ 
-      borderRadius: '12px',
-      boxShadow: 2,
-      height: '100%'
-    }}>
-      <CardContent sx={{ p: 2 }}>
-        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+    <Card sx={cardStyles}>
+      <CardContent sx={cardContentStyles}>
+        <Box sx={headerStyles}>
+          <Typography variant="h6" sx={titleStyles}>
             What's due
           </Typography>
           <Typography variant="body2" color="primary">
@@ -26,8 +32,8 @@ const WhatsDueCard = () => {
         </Box>
         
         {/* Due Item 1 */}
-        <Box mb={2}>
-          <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
+        <Box sx={dueItemStyles}>
+          <Typography variant="subtitle2" sx={titleStyles}>
             Unit 2 quiz
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -45,22 +51,17 @@ const WhatsDueCard = () => {
           <Button 
             variant="outlined" 
             size="small" 
-            sx={{ 
-              mt: 1,
-              textTransform: 'none',
-              borderColor: '#0096c7',
-              color: '#0096c7'
-            }}
+            sx={quizButtonStyles}
           >
             Start Quiz
           </Button>
         </Box>
         
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={dividerStyles} />
         
         {/* Due Item 2 */}
         <Box>
-          <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
+          <Typography variant="subtitle2" sx={titleStyles}>
             12-12 Assignment
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -78,12 +79,7 @@ const WhatsDueCard = () => {
           <Button 
             variant="contained" 
             size="small" 
-            sx={{ 
-              mt: 1,
-              textTransform: 'none',
-              backgroundColor: '#0096c7',
-              '&:hover': { backgroundColor: '#007ba3' }
-            }}
+            sx={assignmentButtonStyles}
           >
             Solve Assignment
           </Button>

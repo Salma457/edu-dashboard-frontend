@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
+import { titleStyles } from "../styles/common/SectionTitle.styles";
 
 interface SectionTitleProps {
   text: string;
@@ -7,7 +8,11 @@ interface SectionTitleProps {
 }
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ text, mt = 3 }) => (
-  <Typography variant="h4" gutterBottom sx={{ mt, textAlign: "center" }}>
+  <Typography 
+    variant="h4" 
+    gutterBottom 
+    sx={titleStyles(mt)}
+  >
     {text}
   </Typography>
 );

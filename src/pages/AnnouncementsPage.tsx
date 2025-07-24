@@ -3,11 +3,11 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getAnnouncements } from "../store/announcementSlice";
 import {
   Typography,
-  Card,
+  
   CardContent,
-  Avatar,
+
   Box,
-  Chip,
+  
   Stack,
   Pagination,
   Skeleton,
@@ -16,47 +16,21 @@ import {
 } from "@mui/material";
 import LayoutWrapper from "../components/layout/LayoutWrapper";
 import { motion, AnimatePresence } from "framer-motion";
-import { styled } from "@mui/material/styles";
+import {
+  StyledCard,
+  StyledAvatar,
+  SubjectChip,
+  TypeChip,
+  containerStyles,
+  titleStyles,
+  contentStyles,
+  paginationStyles,
+  loadingContainerStyles,
+  skeletonTitleStyles,
+  skeletonCardStyles
+} from "./styles/AnnouncementsPage.styles";
 
 const ITEMS_PER_PAGE = 5;
-
-const StyledCard = styled(Card)(({ theme }) => ({
-  boxShadow: `0 4px 20px -5px rgba(20, 66, 114, 0.2)`,
-  transition: 'transform 0.3s, box-shadow 0.3s',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: `0 6px 24px -3px rgba(0, 150, 199, 0.3)`,
-  },
-  borderLeft: `4px solid #0096c7`,
-  borderRadius: '8px',
-  overflow: 'hidden',
-}));
-
-const StyledAvatar = styled(Avatar)({
-  width: 48,
-  height: 48,
-  marginRight: 16,
-  border: "2px solid #0096c7",
-  boxShadow: '0 2px 8px rgba(0, 150, 199, 0.3)'
-});
-
-const SubjectChip = styled(Chip)({
-  backgroundColor: '#144272',
-  color: 'white',
-  fontWeight: 600,
-  '&:hover': {
-    backgroundColor: '#11315d',
-  }
-});
-
-const TypeChip = styled(Chip)({
-  backgroundColor: '#0096c7',
-  color: 'white',
-  fontWeight: 600,
-  '&:hover': {
-    backgroundColor: '#007ba5',
-  }
-});
 
 const AnnouncementsPage = () => {
   const dispatch = useAppDispatch();
@@ -84,11 +58,11 @@ const AnnouncementsPage = () => {
   if (status === "loading") {
     return (
       <LayoutWrapper>
-        <Box sx={{ maxWidth: 'md', mx: 'auto', px: 3, py: 4 }}>
-          <Skeleton variant="text" width={200} height={50} sx={{ mb: 3 }} />
+        <Box sx={loadingContainerStyles}>
+          <Skeleton variant="text" width={200} height={50} sx={skeletonTitleStyles} />
           {[...Array(3)].map((_, index) => (
             <Box key={index} sx={{ mb: 3 }}>
-              <Skeleton variant="rectangular" height={200} sx={{ borderRadius: 2 }} />
+              <Skeleton variant="rectangular" height={200} sx={skeletonCardStyles} />
             </Box>
           ))}
         </Box>
@@ -98,32 +72,11 @@ const AnnouncementsPage = () => {
 
   return (
     <LayoutWrapper>
-      <Box sx={{ 
-        maxWidth: 'md',
-        mx: 'auto',
-        px: { xs: 2, sm: 3 },
-        py: 4,
-        minHeight: 'calc(100vh - 128px)'
-      }}>
+      <Box sx={containerStyles}>
         <Typography 
           variant="h4" 
           gutterBottom 
-          sx={{ 
-            fontWeight: 700,
-            color: '#144272',
-            mb: 4,
-            position: 'relative',
-            '&:after': {
-              content: '""',
-              position: 'absolute',
-              bottom: -8,
-              left: 0,
-              width: '60px',
-              height: '4px',
-              backgroundColor: '#0096c7',
-              borderRadius: '2px'
-            }
-          }}
+          sx={titleStyles}
         >
           Announcements
         </Typography>
@@ -174,11 +127,7 @@ const AnnouncementsPage = () => {
 
                     <Typography 
                       variant="body1" 
-                      sx={{ 
-                        whiteSpace: 'pre-line',
-                        lineHeight: 1.6,
-                        color: 'text.primary'
-                      }}
+                      sx={contentStyles}
                     >
                       {announcement.content}
                     </Typography>
@@ -207,19 +156,7 @@ const AnnouncementsPage = () => {
               page={currentPage}
               onChange={handlePageChange}
               color="primary"
-              sx={{
-                '& .MuiPaginationItem-root': {
-                  color: '#144272',
-                  fontWeight: 600,
-                },
-                '& .MuiPaginationItem-root.Mui-selected': {
-                  backgroundColor: '#0096c7',
-                  color: 'white',
-                },
-                '& .MuiPaginationItem-root:hover': {
-                  backgroundColor: 'rgba(0, 150, 199, 0.1)',
-                },
-              }}
+              sx={paginationStyles}
             />
           </Box>
         )}

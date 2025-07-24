@@ -1,8 +1,9 @@
 import React from "react";
 import { CircularProgress, Box } from "@mui/material";
+import { spinnerContainerStyles } from "../styles/common/LoadingSpinner.styles";
 
 const LoadingSpinner = () => (
-  <Box display="flex" justifyContent="center" mt={4}>
+  <Box sx={spinnerContainerStyles}>
     <CircularProgress />
   </Box>
 );

@@ -4,13 +4,14 @@ import SectionTitle from "./SectionTitle";
 import LoadingSpinner from "./LoadingSpinner";
 import { Typography } from "@mui/material";
 import QuizCard from "./QuizCard";
+import { errorTextStyles } from "../styles/common/QuizzesSection.styles";
 
 const QuizzesSection = () => {
   const { items: quizzes, status } = useAppSelector((state) => state.quizzes);
 
   if (status === "loading") return <LoadingSpinner />;
   if (status === "failed")
-    return <Typography color="error">Failed to fetch quizzes.</Typography>;
+    return <Typography sx={errorTextStyles}>Failed to fetch quizzes.</Typography>;
 
   return (
     <>

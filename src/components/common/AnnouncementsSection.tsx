@@ -10,6 +10,15 @@ import {
   CardContent
 } from "@mui/material";
 import AnnouncementCard from "./AnnouncementCard";
+import {
+  cardStyles,
+  cardContentStyles,
+  headerStyles,
+  showAllButtonStyles,
+  loadingContainerStyles,
+  emptyStateStyles,
+  errorStateStyles
+} from "../styles/common/AnnouncementsSection.styles";
 
 const AnnouncementsSection = () => {
   const navigate = useNavigate();
@@ -24,35 +33,26 @@ const AnnouncementsSection = () => {
     if (showAll) {
       setShowAll(false);
     } else {
-      navigate("/announcements"); // Navigate to announcements page
+      navigate("/announcements");
     }
   };
 
   if (status === "loading") return (
-    <Box display="flex" justifyContent="center" py={4}>
+    <Box sx={loadingContainerStyles}>
       <CircularProgress />
     </Box>
   );
 
   if (status === "failed") return (
-    <Typography color="error" textAlign="center" py={2}>
+    <Typography sx={errorStateStyles}>
       Failed to fetch announcements.
     </Typography>
   );
 
   return (
-    <Card sx={{ 
-      borderRadius: '12px',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-      backgroundColor: '#ffffff'
-    }}>
-      <CardContent sx={{ p: 3 }}>
-        <Box 
-          display="flex" 
-          justifyContent="space-between" 
-          alignItems="center"
-          mb={3}
-        >
+    <Card sx={cardStyles}>
+      <CardContent sx={cardContentStyles}>
+        <Box sx={headerStyles}>
           <Typography variant="h5" fontWeight="bold">
             Announcements
           </Typography>
@@ -60,14 +60,7 @@ const AnnouncementsSection = () => {
             <Button
               variant="outlined"
               onClick={handleShowAll}
-              sx={{
-                textTransform: 'none',
-                color: '#0096c7',
-                borderColor: '#0096c7',
-                '&:hover': {
-                  backgroundColor: 'rgba(0, 150, 199, 0.08)'
-                }
-              }}
+              sx={showAllButtonStyles}
             >
               {showAll ? 'Show Less' : `Show All (${announcements.length})`}
             </Button>
@@ -83,12 +76,7 @@ const AnnouncementsSection = () => {
             ))}
           </>
         ) : (
-          <Typography 
-            variant="body1" 
-            color="textSecondary" 
-            textAlign="center" 
-            py={4}
-          >
+          <Typography sx={emptyStateStyles}>
             No announcements available
           </Typography>
         )}

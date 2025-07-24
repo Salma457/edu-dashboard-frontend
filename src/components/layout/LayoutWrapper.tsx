@@ -1,6 +1,14 @@
 import { Box } from "@mui/material";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import {
+  rootStyles,
+  mainContentStyles,
+  navbarWrapperStyles,
+  scrollableContentStyles,
+  contentStyles,
+  sidebarStyles
+} from "../styles/layout/LayoutWrapper.styles";
 
 interface Props {
   children: React.ReactNode;
@@ -8,55 +16,23 @@ interface Props {
 
 const LayoutWrapper: React.FC<Props> = ({ children }) => {
   return (
-    <Box sx={{ 
-      display: 'flex',
-      minHeight: '100vh',
-      overflow: 'hidden',
-      backgroundColor: '#f5f7fb'
-    }}>
+    <Box sx={rootStyles}>
       {/* Main Content Area */}
-      <Box sx={{
-        flexGrow: 1,
-        display: 'flex',
-        flexDirection: 'column'
-      }}>
+      <Box sx={mainContentStyles}>
         {/* Fixed Navbar */}
-        <Box sx={{
-          position: 'fixed',
-          width: '100%',
-          zIndex: 1100
-        }}>
+        <Box sx={navbarWrapperStyles}>
           <Navbar />
         </Box>
         
         {/* Scrollable Content */}
-        <Box component="main" sx={{
-          flex: 1,
-          pt: '64px', // Height of navbar
-          overflowY: 'auto',
-          height: 'calc(100vh - 64px)',
-          display: 'flex'
-        }}>
+        <Box component="main" sx={scrollableContentStyles}>
           {/* Content */}
-          <Box sx={{
-            flex: 1,
-            p: 3,
-            ml: { md: '280px' } // Space for sidebar
-          }}>
+          <Box sx={contentStyles}>
             {children}
           </Box>
           
           {/* Fixed Sidebar (on right) */}
-          <Box sx={{
-            width: 280,
-            position: 'fixed',
-            left: 0,
-            top: 64,
-            height: 'calc(100vh - 64px)',
-            overflowY: 'auto',
-            zIndex: 1000,
-            display: { xs: 'none', md: 'block' }
-          }}>
+          <Box sx={sidebarStyles}>
             <Sidebar />
           </Box>
         </Box>
