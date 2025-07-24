@@ -27,12 +27,12 @@ const Dashboard = () => {
         mt={2}
       >
         {/* Left Side - Announcements */}
-        <Box flex={3}>
+        <Box flex={{ xs: 1, md: 3 }} width="100%">
           <AnnouncementsSection />
         </Box>
 
-        {/* Right Side - Whats Due */}
-        <Box flex={1} sx={{ display: { xs: 'none', md: 'block' } }}>
+        {/* Right Side - Whats Due - Now visible on all screens */}
+        <Box flex={{ xs: 1, md: 1 }} width="100%">
           <WhatsDueCard />
         </Box>
       </Box>
