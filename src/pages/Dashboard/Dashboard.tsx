@@ -8,6 +8,11 @@ import ExamTipsHeader from "../../components/common/ExamTipsHeader";
 import AnnouncementsSection from "../../components/common/AnnouncementsSection";
 import WhatsDueCard from "../../components/common/WhatsDueCard";
 import LayoutWrapper from "../../components/layout/LayoutWrapper";
+import {
+  dashboardContainerStyles,
+  leftSideStyles,
+  rightSideStyles
+} from "../styles/Dashboard/Dashboard.styles";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -20,19 +25,14 @@ const Dashboard = () => {
   return (
     <LayoutWrapper>
       <ExamTipsHeader />
-      <Box
-        display="flex"
-        flexDirection={{ xs: "column", md: "row" }}
-        gap={4}
-        mt={2}
-      >
+      <Box sx={dashboardContainerStyles}>
         {/* Left Side - Announcements */}
-        <Box flex={{ xs: 1, md: 3 }} width="100%">
+        <Box sx={leftSideStyles}>
           <AnnouncementsSection />
         </Box>
 
-        {/* Right Side - Whats Due - Now visible on all screens */}
-        <Box flex={{ xs: 1, md: 1 }} width="100%">
+        {/* Right Side - Whats Due */}
+        <Box sx={rightSideStyles}>
           <WhatsDueCard />
         </Box>
       </Box>

@@ -1,0 +1,26 @@
+{
+  "home": {
+    "welcome": "Welcome to Anyware Challenge",
+    "subtitle": "Elevate your learning experience with our comprehensive educational platform",
+    "login": "Login",
+    "dashboard": "Go to Dashboard",
+    "featuresTitle": "Our Features",
+    "features": [
+      {
+        "title": "Interactive Learning",
+        "description": "Engage with interactive quizzes and exams to test your knowledge."
+      },
+      {
+        "title": "Progress Tracking",
+        "description": "Monitor your learning journey with detailed analytics."
+      },
+      {
+        "title": "Expert Content",
+        "description": "Access high-quality educational materials from top instructors."
+      }
+    ],
+    "readyTitle": "Ready to get started?",
+    "readyDesc": "Join thousands of students who are already improving their skills with our platform.",
+    "signup": "Sign Up Now"
+  }
+}

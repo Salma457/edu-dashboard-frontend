@@ -14,6 +14,18 @@ import {
   Logout as LogoutIcon
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import {
+  sidebarContainerStyles,
+  logoContainerStyles,
+  listContainerStyles,
+  bottomListContainerStyles,
+  listItemButtonStyles,
+  bottomListItemButtonStyles,
+  listItemIconStyles,
+  bottomListItemIconStyles,
+  listItemTextStyles,
+  bottomListItemTextStyles
+} from "../styles/layout/Sidebar.styles";
 
 interface SidebarProps {
   onItemClick?: () => void;
@@ -41,22 +53,12 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
     setSelected(value);
     navigate(path);
     if (onItemClick) {
-      onItemClick(); // Close the drawer on mobile after clicking an item
+      onItemClick();
     }
   };
 
   return (
-    <Box
-      sx={{
-        width: 280,
-        height: '100vh',
-        background: "linear-gradient(180deg, #0096c7 0%, #144272 100%)",
-        display: "flex",
-        flexDirection: "column",
-        p: 3,
-        overflowY: 'auto'
-      }}
-    >
+    <Box sx={sidebarContainerStyles}>
       {/* COLIGO Logo with Animation */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -68,18 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
           paddingLeft: '16px'
         }}
       >
-        <Box
-          sx={{
-            color: "white",
-            fontSize: "1.75rem",
-            fontWeight: 700,
-            textAlign: "left",
-            py: 2,
-            textShadow: "0 2px 4px rgba(0,0,0,0.2)",
-            display: 'flex',
-            alignItems: 'center'
-          }}
-        >
+        <Box sx={logoContainerStyles}>
           <motion.span
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
@@ -91,43 +82,20 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
       </motion.div>
 
       {/* Main Menu */}
-      <List sx={{ flex: 1, p: 0 }}>
+      <List sx={listContainerStyles}>
         {menuItems.map((item) => (
           <ListItem key={item.value} disablePadding sx={{ mb: 1 }}>
             <ListItemButton
               selected={selected === item.value}
               onClick={() => handleNavigation(item.value, item.path)}
-              sx={{
-                borderRadius: "12px",
-                px: 2,
-                py: 1.25,
-                backgroundColor: selected === item.value 
-                  ? "rgba(255, 255, 255, 0.35)"
-                  : "transparent",
-                "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.15)"
-                },
-                "&.Mui-selected": {
-                  backgroundColor: "rgba(255, 255, 255, 0.35)",
-                  "&:hover": {
-                    backgroundColor: "rgba(255, 255, 255, 0.4)"
-                  }
-                }
-              }}
+              sx={listItemButtonStyles(selected === item.value)}
             >
-              <ListItemIcon sx={{ 
-                color: selected === item.value ? "white" : "rgba(255,255,255,0.8)" 
-              }}>
+              <ListItemIcon sx={listItemIconStyles(selected === item.value)}>
                 {item.icon}
               </ListItemIcon>
               <ListItemText
                 primary={item.label}
-                primaryTypographyProps={{
-                  fontSize: "0.95rem",
-                  fontWeight: selected === item.value ? 700 : 500,
-                  color: "white",
-                  letterSpacing: "0.5px"
-                }}
+                primaryTypographyProps={listItemTextStyles(selected === item.value)}
               />
             </ListItemButton>
           </ListItem>
@@ -135,30 +103,19 @@ const Sidebar: React.FC<SidebarProps> = ({ onItemClick }) => {
       </List>
 
       {/* Bottom Menu */}
-      <List sx={{ p: 0 }}>
+      <List sx={bottomListContainerStyles}>
         {bottomMenuItems.map((item) => (
           <ListItem key={item.value} disablePadding sx={{ mb: 1 }}>
             <ListItemButton
               onClick={() => handleNavigation(item.value, item.path)}
-              sx={{
-                borderRadius: "12px",
-                px: 2,
-                py: 1.25,
-                "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.1)"
-                }
-              }}
+              sx={bottomListItemButtonStyles}
             >
-              <ListItemIcon sx={{ color: "rgba(255,255,255,0.7)" }}>
+              <ListItemIcon sx={bottomListItemIconStyles}>
                 {item.icon}
               </ListItemIcon>
               <ListItemText
                 primary={item.label}
-                primaryTypographyProps={{
-                  fontSize: "0.95rem",
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.8)"
-                }}
+                primaryTypographyProps={bottomListItemTextStyles}
               />
             </ListItemButton>
           </ListItem>
